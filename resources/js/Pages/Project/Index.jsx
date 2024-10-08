@@ -128,12 +128,18 @@ const Index = ({auth,projects,queryParams=null})=>{
                                                     {project.createdBy.name}
                                                 </td>
                                                 <td className="px-3 py-2">
-                                                    <Link to={route('project.edit', project.id)} className="font-medium text-blue-600 hover:underline mx-1 ">
-                                                        Edit
-                                                    </Link>
-                                                    <Link to={route('project.destroy', project.id)} className="font-medium text-red-600 hover:underline mx-1 ">
-                                                        Delete
-                                                    </Link>
+                                                    <div className="grid xl:grid-cols-3 gap-1">
+                                                        <Link href={route('project.edit', project.id)} className=" font-medium text-center text-blue-600 hover:underline mx-1 ">
+                                                            Edit
+                                                        </Link>
+                                                        <Link href={route('project.destroy', project.id)} className="font-medium text-center text-red-600 hover:underline mx-1 ">
+                                                            Delete
+                                                        </Link>
+                                                        <Link href={route('tasks.show', project.id)} className="font-medium text-center text-green-600 hover:underline mx-1 ">
+                                                            See tasks
+                                                        </Link>
+                                                    </div>
+                                                    
                                                 </td>
                                             
                                             </tr>

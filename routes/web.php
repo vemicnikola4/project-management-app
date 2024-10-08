@@ -19,6 +19,8 @@ Route::middleware(['auth','verified'])->group(function(){
     //     return Inertia::render('Dashboard');
     // })->name('dashboard');
     Route::resource('project', ProjectController::class);
+
+    Route::get('tasks_show/{id}', [ProjectController::class, 'showTasks'])->name('tasks.show');
     Route::resource('task', TaskController::class);
     Route::resource('user', UserController::class);
 });

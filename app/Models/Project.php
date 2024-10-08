@@ -30,4 +30,6 @@ class Project extends Model
     {
         return $this->belongsTo(User::class, 'updated_by');
     }
+
+  
 }

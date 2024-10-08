@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
+use App\Models\Task;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 
 use App\Http\Resources\ProjectResource;
+use App\Http\Resources\TaskResource;
 
 
 class ProjectController extends Controller
@@ -82,5 +84,20 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         //
+    }
+    public function showTasks( $id){
+
+        if ( request('name') ){
+            $tasks = Task::where('name','like','%'.request("name").'%');
+
+        }else{
+            $tasks = Task::where('project_id',$id)->paginate(10)->onEachSide(1);
+
+        }
+
+        return inertia("Project/Tasks",[
+            'tasks'=>TaskResource::collection($tasks),
+        ]);
+
     }
 }
